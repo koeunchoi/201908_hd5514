@@ -1,8 +1,8 @@
 ---
-title: "Hoge"
-subtitle: "Statistical Methods"
+title: "HD 5514 Research Methods (Fall 2019)"
+subtitle: "Analysis of Two-Way Tables (W11)"
 author: "Koeun Choi"
-date: "November 12, 2018"
+date: "November 6, 2019"
 output:
   rmdformats::readthedown:
     highlight: kate
@@ -26,220 +26,157 @@ opts_knit$set(width=75)
 ```
 
 
-## Data
-We are going to use the `mice` data included in the [BGLR](https://cran.r-project.org/web/packages/BGLR/index.html) package. 
+# In-Class Acitivity
+
+## Load Data
+We are going to use `mtcars` data included in R by default. We will load and print the mtcars data.
 ```{r, eval=FALSE}
-library(BGLR)
-data(mice)
-W <- mice.X[,1:100]
+# 1. Loading
+data(mtcars) 
+
+# 2. Print
+head(mtcars)
 ```
 
-
-We will learn how to compute allele and genotypic frequencies in R using the cattle data set. 
-
-Let's compute the allele frequency of the first SNP. The `table` function returns frequncies of genotypes. 
+## Print Data
+We can view the content of the mtcars data set.
 ```{r, eval=FALSE}
-table(W[, 1])
+# 2. Print (the first 6 rows)
+head(mtcars)
+
+# Print the last 6 rows
+tail(mtcars)
+
+# Print the first 10 rows
+head(mtcars, 10)
 ```
 
-We can see that there are 541 *AA* animals, 929 *Aa* animals, and 344 *aa* animals. Let's assign these numbers into variables. 
+## Check Data
+Check the number of rows and columns. 
+(Learn more about Data Types and Objects in R: https://msu.edu/~lixue/geo866/lab02/data_type.html)
 ```{r, eval=FALSE}
-nAA <- table(W[, 1])[3]
-nAa <- table(W[, 1])[2]
-naa <- table(W[, 1])[1]
+# Display the internal structure of an R object.
+str(mtcars)
+
+# Check the dimension of an object
+dim(mtcars)
+
+# Number of rows (observations)
+nrow(mtcars)
+
+# Number of columns (variables)
+ncol(mtcars)
 ```
 
-Allele frequency of *A* is given by 
-$$ 
-f(A) = p = \frac{2 \times (\text{no. of } AA \text{ individuals}) + 1 \times (\text{no. of } Aa \text{ individuals})}{2 \times \text{total no. of individuals}}.
-$$
-
-### Exercise 1
-Use the variables `nAA`, `nAa`, and `naa` defined above and compute the allele frequencies of *A* and *a* in the first SNP. 
-```{r, eval=FALSE, echo=TRUE}
-p <- (2 * nAA + 1 * nAa) / (2 * (nAA + nAa + naa))
-p 
-q <- 1 - p
-q
-```
-
-## Genotypic frequency
-Genotypic frequency is given by 
-$$ 
-f(AA) = P = \frac{\text{No. of } AA \text{ individuals}}{\text{Total no. individuals}} \\
-f(Aa) = H = \frac{\text{No. of } Aa \text{ individuals}}{\text{Total no. individuals}} \\
-f(aa) = Q = \frac{\text{No. of } aa \text{ individuals}}{\text{Total no. individuals}}. \\
-$$
-
-### Exercise 2
-What are the genotypic frequencies of `AA`, `Aa`, and `aa` in the first SNP? 
-```{r, eval=FALSE, echo=TRUE}
-P <- (nAA) / (nAA + nAa + naa)
-P
-H <- (nAa) / (nAA + nAa + naa)
-H
-Q <-  (naa) / (nAA + nAa + naa)
-Q 
-```
-
-## Another approach for obtaining allele frequency
-$$ 
-f(A) = p = \frac{2 \times (\text{frequency of } AA) + 1 \times (\text{frequency of } Aa)}{2 \times (\text{frequency of } AA + Aa + aa)}.
-$$
-
-### Exercise 3
-Use the variables `P`, `H`, and `Q` defined above and compute the allele frequencies of *A* and *a* in the first SNP. 
-```{r, eval=FALSE, echo=TRUE}
-p.ex3 <- (2 * P + 1 * H) / (2 * (P + H + Q))
-p.ex3 
-q.ex3 <- 1 - p.ex3
-q.ex3
-```
-
-### Exercise 4
-What are the genotypic frequencies of `AA`, `Aa`, and `aa` in the second SNP? 
+If you want to learn more about the mtcars data set, you can bring up a helpful file for functions and datsets. 
 ```{r, eval=FALSE}
-nAA <- table(W[, 2])[3]
-nAa <- table(W[, 2])[2]
-naa <- table(W[, 2])[1]
-p <- (2 * nAA + 1 * nAa) / (2 * (nAA + nAa + naa))
-p 
-q <- 1 - p
-q
-P <- (nAA) / (nAA + nAa + naa)
-P
-H <- (nAa) / (nAA + nAa + naa)
-H
-Q <-  (naa) / (nAA + nAa + naa)
-Q 
+# Bring up a help file
+help(mtcars) 
+
+# Aquestion mark is a shorcut for the "help" function.
+?mtcars
 ```
 
+## Form a Contingency Table
+We will learn how to conduct Chi-Square Test on the gear (Number of forward gears) and cyl (Number of cylinders) columns in the mtcars data set. 
 
-## Compute allele frequencies for all SNPs 
-So far we have learned how to compute the allele frequency of a single SNP using the `table` function. Here, we consider how to compute allele frequencies for the entire SNPs. Of course we can apply the `table` function manually one at a time. However, this approach takes too much time to compute allele frequencies for 6,960 SNPs. Recall that allele frequency of *A* is given by 
-$$ 
-f(A) = p = \frac{2 \times (\text{no. of } AA \text{ individuals}) + 1 \times (\text{no. of } Aa \text{ individuals})}{2 \times \text{total no. of individuals}}.
-$$
-We can rewrite this equation into 
-$$ 
-f(A) = p = \frac{(\text{no. of } A \text{ allele in the population})}{2 \times \text{total no. of individuals}}.
-$$
-This suggests that all we need is the number of $A$ allele or reference allele $a$ for each SNP. The `sum` function returns the number of reference allele $A$. 
+First, let's form the contengency table. The `table` function returns a contingency table of the counts at each combination of factor labels.
 ```{r, eval=FALSE}
-sum(W[,1]) # sum of A allele in the first SNP
-sum(W[,2]) # sum of A allele in the second SNP
+table(mtcars$gear, mtcars$cyl)
 ```
 
-How to repeat this operation for 300 SNPs? The `colSums` function returns the sum of each column in a matrix as a vector. 
+## Conduct Chi-Squared Test
+Now, we will conduct the chi-squared test using the chisq.test() function. We also set `correct=FALSE` to turn off Yates’ continuity correction.
 ```{r, eval=FALSE}
-colSums(W) 
+chisq.test(mtcars$gear, mtcars$cyl, correct=FALSE)
 ```
 
-Note that `colSums(W) ` gives the numerator of the above equation. We then divide this number by $2 \times \text{total no. of individuals}$. The function `nrows` returns the number of rows. 
+## Get Expected Counts
+To get a table of expected counts, type this.
 ```{r, eval=FALSE}
-p <- colSums(W) / (2 * nrow(W))
-```
-The variable `p` is a vector and it contains the allele frequencies of reference allele for 6,960 SNPs. 
-
-### Exercise 5
-What is the allele frequency of reference allele in the 50th SNP?
-```{r, eval=FALSE, echo=TRUE}
-p[50]
+xsq <- chisq.test(mtcars$gear, mtcars$cyl, correct=FALSE)
+xsq$expected
 ```
 
-## Minor allele frequency 
-In most cases, people report a minor allele frequency, which is the frequency of less frequent allele in a given SNP. We can convert allele frequencies into minor allele frquencies by using the `ifelse` function. 
+## Conduct Fisher's Exact Test
+Chi-square test is used to the the association between two categorical variables when the cell sizes are expected to be large. Fisher's Exact test is used when sample size is small (or you have expected cell sizes < 5).
 ```{r, eval=FALSE}
-maf <- ifelse( p > 0.5, 1-p, p)
+fisher.test(mtcars$gear, mtcars$cyl)
 ```
 
-### Exercise 6
-What is the minor allele frquency of reference allele in the 30th SNP?
-```{r, eval=FALSE, echo=TRUE}
-maf[30]
-```
+# Assignment 7 (Week 11)
 
-### Exercise 7
-What is the mean of minor allele frquencies? 
-```{r, eval=FALSE, echo=TRUE}
-mean(maf)
-```
-
-
-## Expectations and variances
-
-### Exercise 8
-Compute the allele frequency of SNP markers. Recall that the expectation of genotype, $E(W)$, is given by $2p$, where $p$ is the frequency of reference allele. Verify that $2p$ is equal to the mean of each genotype obtained from the `colMeans()` function. 
-```{r, eval=FALSE, echo=TRUE}
-p3 <-( 2*colSums(W==2)  + 1*colSums(W==1)) /  (2 * nrow(W))
-table(colMeans(W) == 2 * p3)
-p <- colSums(W) /  (2 * nrow(W))
-table(colMeans(W) == 2 * p)
-p2 <- colMeans(W) /  2
-table(p == p2)
-```
-
-### Exercise 9
-Recall that the variance of genotype, $Var(W)$, is given by $2p(1-p)$. Verify that $2p(1-p)$ is close to the variance of each genotype obtained from the `var()` function. 
-```{r, eval=FALSE, echo=TRUE}
-var1 <- 2*p*(1-p)
-var2 <- diag(var(W))
-var2 <- apply(W, 2, var)
-table(var1 == var2)
-head(var1)
-head(var2)
-all.equal(var1, var2, tol=0.05)
-```
-
-### Exercise 10
-Create a new marker matrix `X` from `W` and recode markers so that three genotypes $AA$, $Aa$, and $aa$ are coded as 1, 0, and -1, respectively. 
-```{r, eval=FALSE, echo=TRUE}
-X <- W - 1
-```
-Recall that the expectation of genotype, $E(X)$, is given by $2p-1$, where $p$ is the frequency of reference allele. Verify that $2p-1$ is equal to the mean of each genotype obtained from the `colMeans()` function. 
-```{r, eval=FALSE, echo=TRUE}
-p2 <-( 2*colSums(X==1)  + 1*colSums(X==0))/  (2 * nrow(X))
-table(p == p2)
-all.equal(2*p-1, colMeans(X), tol=0.005)
-```
-
-### Exercise 12
-Recall that the variance of genotype, $Var(X)$, remains the same and is given by $2p(1-p)$. Verify that $2p(1-p)$ is close to the variance of each genotype obtained from the `var()` function. 
-```{r, eval=FALSE, echo=TRUE}
-var1 <- 2 * p* (1-p)
-var2 <- var(X)
-var2 <- apply(X, 2, var)
-all.equal(var1, var2, tol=0.05)
-```
-
-### Exercise 13
-Verify that no matter how we code markers, centered marker codes, $W - E(W)$ and $X - E(X)$, remain the same. 
-```{r, eval=FALSE, echo=FALSE}
-all.equal(W-2*p, X - (2*p-1), tol=0.005)
-```
-
-### Exercise 14
-We will recode the SNP genotypes so that now the major allele is treated as a reference allele. Store the new coding into the `W2` variable. 
+## Read Data
+We will use  build-in data set `survey` in the MASS package.
 ```{r, eval=FALSE}
-W2 <- W
-W2[W2==0] <- 3
-W2[W2==2] <- 0
-W2[W2==3] <- 2
+# Install the MASS package if you haven't (remove # from the code below)
+#install.packages("MASS")
+
+# Load the MASS Package
+library(MASS)
 ```
 
+We will load and print the survey data.
+```{r, eval=FALSE}
+# 1. Loading
+data(survey) 
 
-Compute the allele freqeuncy of SNP markers using `W2`. Compare your result with the allele frequency obtained from `W`. 
-```{r, eval=FALSE, echo=TRUE}
-# Freq of A (W)
-p <- colSums(W) /  (2 * nrow(W))
-# Freq of A (W2)
-pW2 <- colSums(W2) /  (2 * nrow(W2))
-head(p)
-head(pW2)
-# SNP 1
-table(W[,1])
-table(W2[,1])
-# SNP 16
-table(W[,16])
-table(W2[,16])
+# 2. Print
+head(survey)
 ```
+
+## Check Data
+Check the number of rows and columns. 
+```{r, eval=FALSE}
+# Display the internal structure of an R object.
+str(survey)
+
+# Check the dimension of an object
+dim(survey)
+
+# Number of rows (observations)
+nrow(survey)
+
+# Number of columns (variables)
+ncol(survey)
+```
+
+## Form a Contingency Table
+Now, we will conduct Chi-Square Test on the Smoke (How much the student smokes) and Exer (How often the student exercise) columns in the mtcars data set. 
+
+First, let's form the contengency table. 
+```{r, eval=FALSE}
+table(survey$Smoke, survey$Exer) 
+```
+
+## Conduct Chi-Squared Test
+Nest, we will conduct the chi-squared test using the chisq.test() function. We also set `correct=FALSE` to turn off Yates’ continuity correction.
+```{r, eval=FALSE}
+chisq.test(survey$Smoke, survey$Exer, correct=FALSE)
+```
+
+## Combine columns
+The warning message above is due to the small cell values in the contingency table. We can combine the second and third columns to avoid the warning sign. 
+
+First, we will save the contingency table named tbl.
+```{r, eval=FALSE}
+# Save the contingency table as tbl
+tbl <- table(survey$Smoke, survey$Exer) 
+tbl
+
+# We can apply the chisq.test function to the contingency table tbl
+chisq.test(tbl)
+```
+
+Next, combine the second and third columns of tbl. Save it in a new table named ctbl.
+```{r, eval=FALSE}
+# Combine the second and third columns
+ctbl <- cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"]) 
+ctbl
+```
+
+We can apply the chisq.test function to the contingency table ctbl
+```{r, eval=FALSE}
+chisq.test(ctbl)
+```
+
