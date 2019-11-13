@@ -144,12 +144,12 @@ $(document).ready(function () {
       <li><a href="#print-data">Print Data</a></li>
       <li><a href="#check-data-set">Check Data Set</a></li>
       <li><a href="#check-the-data-frame-column-mpg">Check the data frame column (mpg)</a></li>
-      <li><a href="#visualize-yoru-data-using-a-box-plot">Visualize yoru data using a box plot</a></li>
+      <li><a href="#visualize-your-data-using-a-box-plot">Visualize your data using a box plot</a></li>
       <li><a href="#compute-one-sample-t-test-two.sided">Compute one-sample t-test (two.sided)</a></li>
       <li><a href="#compute-one-sample-t-test-one.sided">Compute one-sample t-test (one.sided)</a></li>
       </ul></li>
       <li><a href="#compute-one-sample-t-test-two.sided-greater-with-a-different-mean-value.">Compute one-sample t-test (two.sided, greater) with a different mean value.</a></li>
-      <li><a href="#use-the-help-function-to">Use the help function to</a></li>
+      <li><a href="#use-the-help-function">Use the help function</a></li>
       <li><a href="#in-class-acitivity-two-sample-t-test">In-Class Acitivity: Two-Sample T-Test</a><ul>
       <li><a href="#check-two-data-frame-columns-mpg-am">Check two data frame columns (mpg, am)</a></li>
       <li><a href="#conduct-the-unpaired-t-test-between-two-populations-means">Conduct the unpaired t-test between two populations means</a></li>
@@ -227,21 +227,23 @@ $(document).ready(function () {
 <a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co"># Statistical summaries of mpg</span></a>
 <a class="sourceLine" id="cb5-14" data-line-number="14"><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 </div>
-<div id="visualize-yoru-data-using-a-box-plot" class="section level2">
-<h2>Visualize yoru data using a box plot</h2>
+<div id="visualize-your-data-using-a-box-plot" class="section level2">
+<h2>Visualize your data using a box plot</h2>
 <p>First, find the data column, named mpg (gas mileage) of the mtcars data set.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Create a box plot</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">boxplot</span>(mtcars<span class="op">$</span>mpg)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># Add axes and text</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">boxplot</span>(mtcars<span class="op">$</span>mpg,</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="dt">data=</span>airqual<span class="st">`</span><span class="dt">ity,</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="dt">main=&quot;Car Milage Data&quot;,</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="dt">xlab=&quot;Gas mileage&quot;,</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="dt">ylab=&quot;Miles/(US) gallon&quot;,</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="dt">col=&quot;orange&quot;,</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="dt">border=&quot;brown&quot;</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="dt">)</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#par(mar=c(1,1,1,1))</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">boxplot</span>(mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co"># Add axes and text</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">boxplot</span>(mtcars<span class="op">$</span>mpg,</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="dt">data=</span>airquality,</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="dt">main=</span><span class="st">&quot;Car Milage Data&quot;</span>,</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="dt">xlab=</span><span class="st">&quot;Gas mileage&quot;</span>,</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="dt">ylab=</span><span class="st">&quot;Miles/(US) gallon&quot;</span>,</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="dt">col=</span><span class="st">&quot;orange&quot;</span>,</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="dt">border=</span><span class="st">&quot;brown&quot;</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">)</a></code></pre></div>
 </div>
 <div id="compute-one-sample-t-test-two.sided" class="section level2">
 <h2>Compute one-sample t-test (two.sided)</h2>
@@ -290,8 +292,8 @@ mean of x
 <a class="sourceLine" id="cb12-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">t.test</span>(mtcars<span class="op">$</span>mpg, <span class="dt">mu =</span> <span class="dv">18</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
 </div>
-<div id="use-the-help-function-to" class="section level1">
-<h1>Use the help function to</h1>
+<div id="use-the-help-function" class="section level1">
+<h1>Use the help function</h1>
 <p>If you want to learn more about the t.test function</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># A question mark is a shorcut for the &quot;help&quot; function.</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">?t.test</a></code></pre></div>
@@ -377,7 +379,7 @@ mean of x
 <h2>Conduct the unpaired t-test between two populations means</h2>
 <p>If two samples come from unrelated populations, they are independent. Compute the difference in means of the two sample data using the t.test fuction</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># Method 1</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">survey<span class="op">$</span>W.Hnd2 &lt;-<span class="st"> </span><span class="kw">complete.cases</span>(survey<span class="op">$</span>W.Hnd) <span class="co"># Remove all NAs</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">survey2 </a>
 <a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">t.test</span>(survey<span class="op">$</span>Age, survey<span class="op">$</span>W.Hnd2, <span class="dt">is.na =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb22-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb22-5" data-line-number="5"><span class="co"># Method 2 (model response variable mpg by the predictor am)</span></a>

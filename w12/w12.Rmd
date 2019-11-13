@@ -95,21 +95,24 @@ sd(mtcars$mpg)
 summary(mtcars$mpg)
 ```
 
-## Visualize yoru data using a box plot
+## Visualize your data using a box plot
 First, find the data column, named mpg (gas mileage) of the mtcars data set.
 ```{r, eval=FALSE}
 # Create a box plot
+#par(mar=c(1,1,1,1))
 boxplot(mtcars$mpg)
 
 # Add axes and text
+
 boxplot(mtcars$mpg,
-data=airqual`ity,
+data=airquality,
 main="Car Milage Data",
 xlab="Gas mileage",
 ylab="Miles/(US) gallon",
 col="orange",
 border="brown"
 )
+
 ```
 
 ## Compute one-sample t-test (two.sided)
@@ -140,7 +143,7 @@ t.test(mtcars$mpg, mu = 18, alternative = "two.sided")
 t.test(mtcars$mpg, mu = 18, alternative = "greater")
 ```
 
-# Use the help function to 
+# Use the help function
 If you want to learn more about the t.test function
 ```{r, eval=FALSE}
 # A question mark is a shorcut for the "help" function.
@@ -244,7 +247,7 @@ table(survey$W.Hnd)
 If two samples come from unrelated populations, they are independent. Compute the difference in means of the two sample data using the t.test fuction
 ```{r, eval=FALSE}
 # Method 1
-survey$W.Hnd2 <- complete.cases(survey$W.Hnd) # Remove all NAs
+survey2 
 t.test(survey$Age, survey$W.Hnd2, is.na = TRUE)
 
 # Method 2 (model response variable mpg by the predictor am)
