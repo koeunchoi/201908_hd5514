@@ -179,10 +179,3 @@ We can apply the chisq.test function to the contingency table ctbl
 ```{r, eval=FALSE}
 chisq.test(ctbl)
 ```
-
-
-```{r}
-survey$Smoke2 <- ifelse(survey$Smoke == "Never", 1, 0)
-survey$Exer2 <- ifelse(survey$Exer == "Freq", 1, 0)
-chisq.test(survey$Smoke2, survey$Exer2)
-```

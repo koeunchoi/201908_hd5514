@@ -1,8 +1,8 @@
 ---
 title: "HD 5514 Research Methods (Fall 2019)"
-subtitle: "Statistical Methods"
+subtitle: "Inference for Means (T-Test) (W12)"
 author: "Koeun Choi"
-date: "November 13, 2018"
+date: "November 6, 2019"
 output:
   rmdformats::readthedown:
     highlight: kate
@@ -24,6 +24,7 @@ opts_chunk$set(echo=TRUE,
                warning=FALSE)
 opts_knit$set(width=75)
 ```
+
 
 # In-Class Acitivity: One-Sample T-Test
 
@@ -52,7 +53,6 @@ head(mtcars, 10)
 
 ## Check Data Set
 Check the number of rows and columns. 
-(Learn more about Data Types and Objects in R: https://msu.edu/~lixue/geo866/lab02/data_type.html)
 ```{r, eval=FALSE}
 # Display the internal structure of an R object.
 str(mtcars)
@@ -75,6 +75,7 @@ help(mtcars)
 # A question mark is a shorcut for the "help" function.
 ?mtcars
 ```
+
 
 ## Check the data frame column (mpg)
 First, find the data column, named mpg (gas mileage) of the mtcars data set.
@@ -103,7 +104,6 @@ First, find the data column, named mpg (gas mileage) of the mtcars data set.
 boxplot(mtcars$mpg)
 
 # Add axes and text
-
 boxplot(mtcars$mpg,
 data=airquality,
 main="Car Milage Data",
@@ -112,8 +112,8 @@ ylab="Miles/(US) gallon",
 col="orange",
 border="brown"
 )
-
 ```
+
 
 ## Compute one-sample t-test (two.sided)
 Use the t.test() function to perfom one-sample t-test (two.sided)
@@ -124,27 +124,29 @@ t.test(mtcars$mpg, mu = 0, alternative = "two.sided")
 # < 2.2e-16 is equal to 2.2 x 10^-16, 0.00000000000000022 with 15 zeros after the decimal point (E: scientific (or exponential) notation, 10 to the x-th power)
 ```
 
+
 ## Compute one-sample t-test (one.sided)
 Using the "alternative" argument to change the alternative hypothesis. alternative argument allows one of the following options: “two.sided” (default), “greater” or “less”.
-```{r}
-# one-tailed test ()
+```{r, eval=FALSE}
+# one-tailed test
 t.test(mtcars$mpg, mu = 0, alternative = "less")
 
 # one-tailed test
 t.test(mtcars$mpg, mu = 0, alternative = "greater")
 ```
 
-# Compute one-sample t-test (two.sided, greater) with a different mean value.
+## Compute one-sample t-test with a different mean
 Using the "mu" argument to change the theoretical mean. Default is 18 but you can change it (mu = 20).
 ```{r, eval=FALSE}
 # two-tailed test
 t.test(mtcars$mpg, mu = 18, alternative = "two.sided")
 
+# one-tailed test (greater)
 t.test(mtcars$mpg, mu = 18, alternative = "greater")
 ```
 
-# Use the help function
-If you want to learn more about the t.test function
+## Use the help function
+If you want to learn more about the t.test function.
 ```{r, eval=FALSE}
 # A question mark is a shorcut for the "help" function.
 ?t.test
@@ -195,64 +197,68 @@ t.test(mtcars$mpg ~ mtcars$am)
 # Assignment 8 (Week 12)
 
 ## Read Data
-We will use  build-in data set `survey` in the MASS package.
-```{r, eval=FALSE}
-# Install the MASS package if you haven't (remove # from the code below)
-#install.packages("MASS")
-
-# Load the MASS Package
-library(MASS)
-```
-
-We will load and print the survey data.
+We will use  build-in data set `sleep`. We will load and print the survey data.
 ```{r, eval=FALSE}
 # 1. Loading
-data(survey) 
+data(sleep) 
 
 # 2. Print
-head(survey)
+head(sleep)
 ```
 
 ## Check Data
 Check the number of rows and columns. 
 ```{r, eval=FALSE}
 # Display the internal structure of an R object.
-str(survey)
+str(sleep)
 
 # Check the dimension of an object
-dim(survey)
-
-# Use the help function to learn about the survey data set.
-?survey
+dim(sleep)
 ```
 
-## Check two data frame columns (Age, Exer)
-First, find the data column, named Age of the survey data set.
+## Use the help function to learn about variables
+If you want to learn more about the t.test function.
+```{r, eval=FALSE}
+# A question mark is a shorcut for the "help" function.
+?sleep
+```
 
+## Check two data frame columns (group, extra)
+First, find the data column, named "extra", of the survey data set.
 ```{r, eval=FALSE}
 # Summary of the Age column
-summary(survey$Age)
+summary(sleep$extra)
 ```
 
-Next, find another data column, named Exer in the survey data set.  
+Next, find another data column, named "group" in the survey data set.  
 ```{r, eval=FALSE}
 # Summary of the Exer column
-summary(survey$W.Hnd)
+summary(sleep$group)
 
 # Create a freqeuncy table for the am column
-table(survey$W.Hnd)
+table(sleep$group)
 ```
 
-## Conduct the unpaired t-test between two populations means
-If two samples come from unrelated populations, they are independent. Compute the difference in means of the two sample data using the t.test fuction
+## Conduct the unpaired t-test between two populations means (Welch t-test by default)
+Compute the difference in means of the two sample data using the t.test fuction. By default, t.test does not assume equal variances; instead of Student’s t-test, it uses the Welch t-test by default.
 ```{r, eval=FALSE}
-# Method 1
-survey2 
-t.test(survey$Age, survey$W.Hnd2, is.na = TRUE)
+# Method 1 (Do not use Method 1 for Assignment #8)
+#t.test(sleep$extra, sleep$group)
 
-# Method 2 (model response variable mpg by the predictor am)
-t.test(survey$Age ~ survey$W.Hnd2)
-
-# Welch Two Sample t-test is more reliable when the two samples have unequal variances and/or unequal sample size.
+# Method 2 (Use Method 2 for Assignment #8)
+t.test(sleep$extra ~ sleep$group)
 ```
 
+## Conduct the unpaired t-test between two populations means (Student’s t-test)
+Now, assume equal variance and use Student’s t-test by setting var.equal=TRUE.
+```{r, eval=FALSE}
+# Conduct Student t-test
+t.test(sleep$extra ~ sleep$group, sleep, var.equal=TRUE)
+```
+
+# FYI: Test equal variance using Bartlett’s test
+You can test whether two or more samples are drawn from populations with "equal variance" using Bartlett’s test. The null hypothesis of this test is that the variances are equal. The alterntive hypothesis is that they are not equal. If you fail to reject the null hypothesis, that means there is not enough evidence to suggest that the variance is different for groups. Thus, you can assume equal variance. 
+```{r, eval=FALSE}
+# Conduct Bartlett’s test with the bartlett.test function
+bartlett.test(sleep$extra~sleep$group)
+```
