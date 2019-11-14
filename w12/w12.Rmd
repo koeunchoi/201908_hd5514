@@ -2,7 +2,7 @@
 title: "HD 5514 Research Methods (Fall 2019)"
 subtitle: "Inference for Means (T-Test) (W12)"
 author: "Koeun Choi"
-date: "November 6, 2019"
+date: "November 13, 2019"
 output:
   rmdformats::readthedown:
     highlight: kate
@@ -226,16 +226,16 @@ If you want to learn more about the t.test function.
 ## Check two data frame columns (group, extra)
 First, find the data column, named "extra", of the survey data set.
 ```{r, eval=FALSE}
-# Summary of the Age column
+# Summary of the "extra" column
 summary(sleep$extra)
 ```
 
 Next, find another data column, named "group" in the survey data set.  
 ```{r, eval=FALSE}
-# Summary of the Exer column
+# Summary of the "group" column
 summary(sleep$group)
 
-# Create a freqeuncy table for the am column
+# Create a freqeuncy table for the "group" column
 table(sleep$group)
 ```
 
