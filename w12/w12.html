@@ -161,8 +161,8 @@ $(document).ready(function () {
       <li><a href="#check-two-data-frame-columns-group-extra">Check two data frame columns (group, extra)</a></li>
       <li><a href="#conduct-the-unpaired-t-test-between-two-populations-means-welch-t-test-by-default">Conduct the unpaired t-test between two populations means (Welch t-test by default)</a></li>
       <li><a href="#conduct-the-unpaired-t-test-between-two-populations-means-students-t-test">Conduct the unpaired t-test between two populations means (Student’s t-test)</a></li>
-      </ul></li>
       <li><a href="#fyi-test-equal-variance-using-bartletts-test">FYI: Test equal variance using Bartlett’s test</a></li>
+      </ul></li>
       </ul>
     </div>
 </div>
@@ -369,12 +369,12 @@ $(document).ready(function () {
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># Conduct Student t-test</span></a>
 <a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">t.test</span>(sleep<span class="op">$</span>extra <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>group, sleep, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
-</div>
-<div id="fyi-test-equal-variance-using-bartletts-test" class="section level1">
-<h1>FYI: Test equal variance using Bartlett’s test</h1>
+<div id="fyi-test-equal-variance-using-bartletts-test" class="section level2">
+<h2>FYI: Test equal variance using Bartlett’s test</h2>
 <p>You can test whether two or more samples are drawn from populations with “equal variance” using Bartlett’s test. The null hypothesis of this test is that the variances are equal. The alterntive hypothesis is that they are not equal. If you fail to reject the null hypothesis, that means there is not enough evidence to suggest that the variance is different for groups. Thus, you can assume equal variance.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># Conduct Bartlett’s test with the bartlett.test function</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">bartlett.test</span>(sleep<span class="op">$</span>extra<span class="op">~</span>sleep<span class="op">$</span>group)</a></code></pre></div>
+</div>
 </div>
 </div>
 

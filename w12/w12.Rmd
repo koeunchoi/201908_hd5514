@@ -256,7 +256,7 @@ Now, assume equal variance and use Student’s t-test by setting var.equal=TRUE.
 t.test(sleep$extra ~ sleep$group, sleep, var.equal=TRUE)
 ```
 
-# FYI: Test equal variance using Bartlett’s test
+## FYI: Test equal variance using Bartlett’s test
 You can test whether two or more samples are drawn from populations with "equal variance" using Bartlett’s test. The null hypothesis of this test is that the variances are equal. The alterntive hypothesis is that they are not equal. If you fail to reject the null hypothesis, that means there is not enough evidence to suggest that the variance is different for groups. Thus, you can assume equal variance. 
 ```{r, eval=FALSE}
 # Conduct Bartlett’s test with the bartlett.test function
