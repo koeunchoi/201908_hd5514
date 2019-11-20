@@ -39,7 +39,7 @@ head(mtcars)
 ```
 
 ## Print Data
-We can view the content of the mtcars data set.
+We can view the content of the mtcars data.
 ```{r, eval=FALSE}
 # 2. Print (the first 6 rows)
 head(mtcars)
@@ -67,7 +67,7 @@ nrow(mtcars)
 ncol(mtcars)
 ```
 
-If you want to learn more about the mtcars data set, you can bring up a helpful file for functions and datsets. 
+If you want to learn more about the `mtcars` data set, you can bring up a helpful file for functions and datsets. 
 ```{r, eval=FALSE}
 # Bring up a help file
 help(mtcars) 
@@ -78,7 +78,7 @@ help(mtcars)
 
 
 ## Check the data frame column (mpg)
-First, find the data column, named mpg (gas mileage) of the mtcars data set.
+First, find the data column, named `mpg` (gas mileage) of the mtcars data set.
 ```{r, eval=FALSE}
 # Print the mpg column
 mtcars$mpg
@@ -97,7 +97,7 @@ summary(mtcars$mpg)
 ```
 
 ## Visualize your data using a box plot
-First, find the data column, named mpg (gas mileage) of the mtcars data set.
+First, find the data column, named `mpg` (gas mileage) of the mtcars data set.
 ```{r, eval=FALSE}
 # Create a box plot
 #par(mar=c(1,1,1,1))
@@ -116,7 +116,7 @@ border="brown"
 
 
 ## Compute one-sample t-test (two.sided)
-Use the t.test() function to perfom one-sample t-test (two.sided)
+Use the `t.test()` function to perfom one-sample t-test (two.sided)
 ```{r, eval=FALSE}
 # two-tailed test
 t.test(mtcars$mpg, mu = 0, alternative = "two.sided")
@@ -126,7 +126,7 @@ t.test(mtcars$mpg, mu = 0, alternative = "two.sided")
 
 
 ## Compute one-sample t-test (one.sided)
-Using the "alternative" argument to change the alternative hypothesis. alternative argument allows one of the following options: “two.sided” (default), “greater” or “less”.
+Using the `alternative` argument to change the alternative hypothesis. alternative argument allows one of the following options: `“two.sided” (default), “greater” or “less”`.
 ```{r, eval=FALSE}
 # one-tailed test
 t.test(mtcars$mpg, mu = 0, alternative = "less")
@@ -136,7 +136,7 @@ t.test(mtcars$mpg, mu = 0, alternative = "greater")
 ```
 
 ## Compute one-sample t-test with a different mean
-Using the "mu" argument to change the theoretical mean. Default is 18 but you can change it (mu = 20).
+Using the `mu` argument to change the theoretical mean. Default is 18 but you can change it (mu = 20).
 ```{r, eval=FALSE}
 # two-tailed test
 t.test(mtcars$mpg, mu = 18, alternative = "two.sided")
@@ -157,7 +157,7 @@ If you want to learn more about the t.test function.
 ## Check two data frame columns (mpg, am)
 If two samples come from unrelated populations, they are independent.
 
-First, find the data column, named mpg (gas mileage) of the mtcars data set.
+First, find the data column, named `mpg` (gas mileage) of the mtcars data set.
 ```{r, eval=FALSE}
 # Print the mpg column
 mtcars$mpg
@@ -172,7 +172,7 @@ mean(mtcars$mpg)
 sd(mtcars$mpg)
 ```
 
-Next, find another data column, named am (transmission type; 0 = automatic, 1 = manual) in the mtcars data set.  
+Next, find another data column, named `am` (transmission type; 0 = automatic, 1 = manual) in the mtcars data set.  
 ```{r, eval=FALSE}
 # Print the am column
 mtcars$am
@@ -182,7 +182,7 @@ table(mtcars$am)
 ```
 
 ## Conduct the unpaired t-test between two populations means
-If two samples come from unrelated populations, they are independent. Compute the difference in means of the two sample data using the t.test fuction
+If two samples come from unrelated populations, they are independent. Compute the difference in means of the two sample data using the `t.test` fuction
 ```{r, eval=FALSE}
 # Method 1
 t.test(mtcars$mpg, mtcars$am)
@@ -217,20 +217,20 @@ dim(sleep)
 ```
 
 ## Use the help function to learn about variables
-If you want to learn more about the t.test function.
+If you want to learn more about the `t.test` function.
 ```{r, eval=FALSE}
 # A question mark is a shorcut for the "help" function.
 ?sleep
 ```
 
 ## Check two data frame columns (group, extra)
-First, find the data column, named "extra", of the survey data set.
+First, find the data column, named `extra`, of the survey data set.
 ```{r, eval=FALSE}
 # Summary of the "extra" column
 summary(sleep$extra)
 ```
 
-Next, find another data column, named "group" in the survey data set.  
+Next, find another data column, named `group` in the survey data set.  
 ```{r, eval=FALSE}
 # Summary of the "group" column
 summary(sleep$group)
@@ -240,7 +240,7 @@ table(sleep$group)
 ```
 
 ## Conduct the unpaired t-test between two populations means (Welch t-test by default)
-Compute the difference in means of the two sample data using the t.test fuction. By default, t.test does not assume equal variances; instead of Student’s t-test, it uses the Welch t-test by default.
+Compute the difference in means of the two sample data using the `t.test` fuction. By default, t.test does not assume equal variances; instead of Student’s t-test, it uses the Welch t-test by default.
 ```{r, eval=FALSE}
 # Method 1 (Do not use Method 1 for Assignment #8)
 #t.test(sleep$extra, sleep$group)
@@ -250,7 +250,7 @@ t.test(sleep$extra ~ sleep$group)
 ```
 
 ## Conduct the unpaired t-test between two populations means (Student’s t-test)
-Now, assume equal variance and use Student’s t-test by setting var.equal=TRUE.
+Now, assume equal variance and use Student’s t-test by setting `var.equal=TRUE`.
 ```{r, eval=FALSE}
 # Conduct Student t-test
 t.test(sleep$extra ~ sleep$group, sleep, var.equal=TRUE)
@@ -261,4 +261,16 @@ You can test whether two or more samples are drawn from populations with "equal 
 ```{r, eval=FALSE}
 # Conduct Bartlett’s test with the bartlett.test function
 bartlett.test(sleep$extra~sleep$group)
+```
+
+## FYI: Visualize your data using a box plot by group
+You can visualize both groups (1 and 2) using the `boxplot` function.
+```{r}
+boxplot(sleep$extra ~ sleep$group)
+```
+
+## FYI: Conduct the paired t-test
+When each subject is measured twice such as repeated-measures designs, it will result in pairs of observations that are not independent. In this case, we analyze the differences before and after using a paird sample t-test. We will test whether the mean values for the `extra` variable differs by the `group` variable to look at the difference between the two groups (group 1 and group 2).
+```{r}
+t.test(extra ~ group, data = sleep, paired = TRUE)
 ```

@@ -1,0 +1,359 @@
+---
+title: "HD 5514 Research Methods (Fall 2019)"
+subtitle: "Inference for Regression (W13)"
+author: "Koeun Choi"
+date: "November 20, 2019"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    self_contained: false
+    code_folding: hide
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+# In-Class Acitivity: Correlation
+
+## Load Data
+We are going to use `cars` data included in R by default. We will load and print the cars data.
+```{r, eval=FALSE}
+# 1. Loading
+data(cars) 
+
+# 2. Print
+head(cars)
+```
+
+## Check Data Set
+Check the number of rows and columns. 
+```{r, eval=FALSE}
+# Display the internal structure of an R object.
+str(cars)
+
+# Check the dimension of an object
+dim(cars)
+
+# Check the variables
+?cars
+```
+
+## Visualize your data using a scatter plot
+Find the data columns, named `speed` (numeric	Speed (mph))  and `dist` (numeric	Stopping distance (ft)) from the cars data set. Create a scatter plot to visualze the relationship between the two variables.
+```{r, eval=FALSE}
+#par(mar=c(1,1,1,1)) # change figure margins if you encounter errors
+
+# Create a simple scatter plot (Method 1)
+plot(cars$dist ~ cars$speed) 
+
+# Create a simple scatter plot (Method 2)
+plot(dist ~ speed, data = cars) 
+```
+
+## Calcuate correlation
+Calcuate correlation among two variables `speed` and `dist` using the `cor` function. Conduct statistical testing for the association using `cor.test` function. The default is Pearson's correlation, but you can use Spearman's (rho) rank correlation `method="spearman"` or Kendall's tau `method="kendall"` for nonparametic tests.
+```{r, eval=FALSE}
+# Compute correlation
+cor(cars$speed, cars$dist)
+
+# Statistical testing for associatin between the two variables
+cor.test(cars$dist, cars$speed)
+
+# Check the `cor.test` function
+?cor.test 
+
+# Correlations for the entire data set
+cor(cars)
+```
+
+# In-Class Acitivity: Simple Linear Regression
+
+## Load Data
+We are going to use `cars` data included in R by default. We will load and print the cars data.
+```{r, eval=FALSE}
+# 1. Loading
+data(cars) 
+
+# 2. Print
+head(cars)
+```
+
+## Check Data Set
+Check the number of rows and columns. 
+```{r, eval=FALSE}
+# Display the internal structure of an R object.
+str(cars)
+
+# Check the dimension of an object
+dim(cars)
+
+# Check the variables
+?cars
+```
+
+## Visualize your data using a scatter plot
+Find the data columns, named `speed` (numeric	Speed (mph))  and `dist` (numeric	Stopping distance (ft)) from the cars data set. Create a scatter plot to visualze linear relationship between the two variables.
+```{r, eval=FALSE}
+#par(mar=c(1,1,1,1)) # change figure margins if you encounter errors
+
+# Create a scatter plot
+scatter.smooth(cars$dist ~ cars$speed) 
+
+# Add axes and text
+scatter.smooth(cars$dist ~ cars$speed,
+main="Dist ~ Speed",
+xlab="Speed (mph)",
+ylab="Stopping distance (ft)",
+col="orange")               
+```
+
+## Visualize your data using a boxplot and check for outliers
+Use the `boxplot` funciton to create a boxplot for each variable: `speed` (numeric	Speed (mph))  and `dist` (numeric	Stopping distance (ft)) from the cars data set. See if there is any outlier based on the 1.5 x interquartile-range (1.5 * IQR) rule.
+```{r, eval=FALSE}
+# box plot for 'speed'
+boxplot(cars$speed,  main="Speed")
+
+# box plot for 'speed'
+boxplot(cars$dist,  main="Distance")
+
+# Visualize two figures side by side and add notes (run the following 3 rows at the same time)
+par(mfrow=c(1, 2)) # divide graph area in 2 columns
+boxplot(cars$speed, main="Speed", sub = paste("Outlier rows: ", boxplot.stats(cars$speed)$out))  
+boxplot(cars$dist, main="Distance", sub=paste("Outlier rows: ", boxplot.stats(cars$dist)$out))  
+```
+
+## Check the normality of the response variable using a histogram
+Create a histogram with the function `hist()`. You can change the number of bins using the `breaks=` argument.
+```{r, eval=FALSE}
+# simple histogram
+hist(cars$dist)
+
+# histogram with different number of bins
+hist(cars$dist, breaks = 20)
+
+# histogram with different number of bins and change color
+hist(cars$dist, breaks = 20, col = "gray")
+```
+
+## Chek the normality of the response variable using a density plot
+Create a density plot with the function `density()`.
+```{r, eval=FALSE}
+# returns density data
+density(cars$dist)
+
+# plot the results (Method 1)
+plot(density(cars$dist))
+
+# plot the results (Method 2)
+d <- density(cars$dist)
+plot(d)
+```
+
+## Chek the normality of the response variable using a QQ plot
+Create a density plot with the function `qqnorm()`. Quantile-Quantile plot (QQ-plot) shows the correlation between a given sample and the normal distribution. 
+```{r, eval=FALSE}
+# create a normal QQ plot
+qqnorm(cars$dist)
+
+# create a normal QQ plot and add a reference line (Run the two lines at the same time)
+qqnorm(cars$dist)
+qqline(cars$dist) 
+```
+
+## Fit a simple linear regression model
+Fit a linear model with the function `lm()`. Regress the outcome variable `dist` on the exploratory variable `speed`
+```{r, eval=FALSE}
+# fit the regression model (Method 1)
+lm(cars$dist ~ cars$speed)
+
+# fit the regression model (Method 2)
+lm(dist ~ speed, data = cars)
+```
+
+## Produce a summary of the model fitting 
+Produce a summary of the results of the model fitting using `summary` funciton.
+```{r, eval=FALSE}
+# check the summary
+LinearModel <- lm(dist ~ speed, data = cars)
+summary(LinearModel)
+```
+
+## Checking for statistical significance
+Check coefficients, F-statistic, and R-squared
+```{r, eval=FALSE}
+LMSummary <- summary(LinearModel)
+
+# model coefficients
+LMSummary$coefficients
+
+# model F-statistic
+LMSummary$fstatistic
+```
+
+# In-Class Acitivity: Multiple Linear Regression
+
+## Load Data
+We are going to use `mtcars` data included in R by default. We will load and print the mtcars data.
+```{r, eval=FALSE}
+# 1. Loading
+data(mtcars) 
+
+# 2. Print
+head(mtcars)
+```
+
+## Fit a multiple linear regression model
+Fit a linear model with the function `lm()`. Regress the outcome variable `mpg`(Miles/(US) gallon) on the exploratory variables `cyl` (Number of cylinders), `wt` (Weight (1000 lbs)), and `vs` Engine (0 = V-shaped, 1 = straight).
+```{r, eval=FALSE}
+# fit the regression model
+lm(mpg ~ cyl + wt + vs, data = mtcars)
+?mtcars
+```
+
+## Produce a summary of the model fitting 
+Produce a summary of the results of the model fitting using `summary` funciton.
+```{r, eval=FALSE}
+# check the summary
+MulipleModel <- lm(mpg ~ cyl + wt + vs, data = mtcars)
+summary(MulipleModel)
+```
+
+# Assignment 9 (Week 13)
+
+## Read Data
+We will use  build-in data set `Prestige` contained in the R package `car`. We will load and print the survey data.
+```{r, eval=FALSE}
+# 1. Load the required package.
+#install.library(car) # if you don't have the "car" package, make sure to install it. 
+library(car)
+
+# 2. Load the data
+data(Prestige) 
+
+# 2. Print
+head(Prestige)
+```
+
+## Check Data
+Check the number of rows and columns. 
+```{r, eval=FALSE}
+# Display the internal structure of an R object.
+str(Prestige)
+
+# Check the dimension of an object
+dim(Prestige)
+```
+
+## Use the help function to learn about variables
+If you want to learn more about the t.test function.
+```{r, eval=FALSE}
+# A question mark is a shorcut for the "help" function.
+?Prestige
+```
+
+## Check two data frame columns (group, extra)
+First, find the data column, named "income", of the survey data set.
+```{r, eval=FALSE}
+# Summary of the "income" column
+summary(Prestige$income)
+```
+
+Next, find another data column, named "education" in the survey data set.  
+```{r, eval=FALSE}
+# Summary of the "group" column
+summary(Prestige$education)
+```
+
+## Visualize your variable and check for outliers
+Use the `boxplot` funciton to create a boxplot for each variable: `income` (Average income of incumbents, dollars, in 1971.), `education` (Average education of occupational incumbents, years, in 1971), `prestige` (Pineo-Porter prestige score for occupation, from a social survey conducted in the mid-1960s) from the cars data set. See if there is any outlier based on the 1.5 x interquartile-range (1.5 * IQR) rule.
+```{r, eval=FALSE}
+?Prestige
+# box plot for 'income'
+boxplot(Prestige$income, main="Income")
+boxplot(Prestige$income, main="Income", sub = paste("Outlier rows: ", boxplot.stats(Prestige$income)$out))  
+
+# Check the outliers for 'income'
+boxplot.stats(Prestige$income)$out
+
+# box plot for 'education'
+boxplot(Prestige$education, main="Education")
+
+# Check the outliers for 'income'
+boxplot(Prestige$education, main="Education", sub = paste("Outlier rows: ", boxplot.stats(Prestige$education)$out))  
+
+# box plot for 'prestige'
+boxplot(Prestige$prestige, main="Prestige")
+boxplot(Prestige$prestige, main="Prestige", sub = paste("Outlier rows: ", boxplot.stats(Prestige$prestige)$out))
+```
+
+## Check the normality of a potenital response variable using a histogram
+Create a histogram with the function `hist()`. You can change the number of bins using the `breaks=` argument.
+```{r, eval=FALSE}
+# histogram with different number of bins and change color
+hist(Prestige$income, breaks = 5, col = "gray")
+```
+
+## Check the normality of a potenital response variable using a density plot
+Create a density plot with the function `density()`.
+```{r, eval=FALSE}
+# plot the results
+d2 <- density(Prestige$income)
+plot(d2)
+```
+
+## Check the normality of a potenital response variable using a QQ plot
+Create a density plot with the function `qqnorm()`. Quantile-Quantile plot (QQ-plot) shows the correlation between a given sample and the normal distribution. 
+```{r, eval=FALSE}
+# create a normal QQ plot and add a reference line (Run the two lines at the same time)
+qqnorm(Prestige$income)
+qqline(Prestige$income) 
+```
+
+## Check the normality of the response variable using a histogram
+Create a histogram with the function `hist()`. You can change the number of bins using the `breaks=` argument.
+```{r, eval=FALSE}
+# histogram with different number of bins and change color
+hist(Prestige$prestige, breaks = 10, col = "gray")
+```
+
+## Chek the normality of the response variable using a density plot
+Create a density plot with the function `density()`.
+```{r, eval=FALSE}
+# plot the results
+d2 <- density(Prestige$prestige)
+plot(d2)
+```
+
+## Check the normality of the response variable using a QQ plot
+Create a density plot with the function `qqnorm()`. Quantile-Quantile plot (QQ-plot) shows the correlation between a given sample and the normal distribution. 
+```{r, eval=FALSE}
+# create a normal QQ plot and add a reference line (Run the two lines at the same time)
+qqnorm(Prestige$prestige)
+qqline(Prestige$prestige) 
+```
+
+## Fit a simple linear regression model
+Fit a linear model with the function `lm()`. Regress the outcome variable `dist` on the exploratory variable `speed`
+```{r, eval=FALSE}
+# fit the regression model
+lm(prestige ~ education, data = Prestige)
+```
+## Produce a summary of the model fitting 
+Produce a summary of the results of the model fitting using `summary` funciton.
+```{r, eval=FALSE}
+# check the summary
+LinearModel2 <- lm(prestige ~ education, data = Prestige)
+summary(LinearModel2)
+```
