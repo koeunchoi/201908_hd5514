@@ -236,7 +236,7 @@ summary(MulipleModel)
 We will use  build-in data set `Prestige` contained in the R package `car`. We will load and print the survey data.
 ```{r, eval=FALSE}
 # 1. Load the required package.
-#install.library(car) # if you don't have the "car" package, make sure to install it. 
+#install.packages("car") # if you don't have the "car" package, make sure to install it. 
 library(car)
 
 # 2. Load the data
