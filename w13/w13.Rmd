@@ -263,21 +263,27 @@ If you want to learn more about the t.test function.
 ?Prestige
 ```
 
-## Check two data frame columns (group, extra)
-First, find the data column, named "income", of the survey data set.
+## Check three data frame columns (income, education)
+First, find the data column, named `income`, of the survey data set.
 ```{r, eval=FALSE}
 # Summary of the "income" column
 summary(Prestige$income)
 ```
 
-Next, find another data column, named "education" in the survey data set.  
+Next, find another data column, named `education` in the survey data set.  
 ```{r, eval=FALSE}
 # Summary of the "group" column
 summary(Prestige$education)
 ```
 
+Lastly, find the data column, named `prestige`, of the survey data set.
+```{r, eval=FALSE}
+# Summary of the "prestige" column
+summary(Prestige$prestige)
+```
+
 ## Visualize your variable and check for outliers
-Use the `boxplot` funciton to create a boxplot for each variable: `income` (Average income of incumbents, dollars, in 1971.), `education` (Average education of occupational incumbents, years, in 1971), `prestige` (Pineo-Porter prestige score for occupation, from a social survey conducted in the mid-1960s) from the cars data set. See if there is any outlier based on the 1.5 x interquartile-range (1.5 * IQR) rule.
+Use the `boxplot` funciton to create a boxplot for each variable: `income` (Average income of incumbents, dollars, in 1971), `education` (Average education of occupational incumbents, years, in 1971), `prestige` (Pineo-Porter prestige score for occupation, from a social survey conducted in the mid-1960s) from the cars data set. See if there is any outlier based on the 1.5 x interquartile-range (1.5 * IQR) rule.
 ```{r, eval=FALSE}
 ?Prestige
 # box plot for 'income'
@@ -290,11 +296,13 @@ boxplot.stats(Prestige$income)$out
 # box plot for 'education'
 boxplot(Prestige$education, main="Education")
 
-# Check the outliers for 'income'
+# Check the outliers for 'education'
 boxplot(Prestige$education, main="Education", sub = paste("Outlier rows: ", boxplot.stats(Prestige$education)$out))  
 
 # box plot for 'prestige'
 boxplot(Prestige$prestige, main="Prestige")
+
+# Check the outliers for 'prestige'
 boxplot(Prestige$prestige, main="Prestige", sub = paste("Outlier rows: ", boxplot.stats(Prestige$prestige)$out))
 ```
 
@@ -345,11 +353,12 @@ qqline(Prestige$prestige)
 ```
 
 ## Fit a simple linear regression model
-Fit a linear model with the function `lm()`. Regress the outcome variable `dist` on the exploratory variable `speed`
+Fit a linear model with the function `lm()`. Regress the outcome variable `prestige` on the exploratory variable `education`
 ```{r, eval=FALSE}
 # fit the regression model
 lm(prestige ~ education, data = Prestige)
 ```
+
 ## Produce a summary of the model fitting 
 Produce a summary of the results of the model fitting using `summary` funciton.
 ```{r, eval=FALSE}
