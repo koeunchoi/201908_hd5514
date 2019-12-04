@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Koeun Choi" />
+
+<meta name="date" content="2019-12-04" />
+
+<title>HD 5514 Research Methods (Fall 2019)</title>
+
+<script src="w15_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="w15_files/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<script src="w15_files/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script src="w15_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="w15_files/navigation-1.1/tabsets.js"></script>
+<script src="w15_files/navigation-1.1/codefolding.js"></script>
+<link href="w15_files/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+<script src="w15_files/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+<link href="w15_files/readthedown-0.1/readthedown.css" rel="stylesheet" />
+<script src="w15_files/readthedown-0.1/readthedown.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+<div id="content" data-toggle="wy-nav-shift">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<nav id="nav-top" role="navigation" aria-label="top navigation">
+    <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+</nav>
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text-muted">Code</span> <span class="text-muted caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All</a></li>
+</ul>
+</div>
+
+<div id="header">
+<h1 class="title">HD 5514 Research Methods (Fall 2019)</h1>
+<h1 class="subtitle">Analysis of Variance (W15)</h1>
+</div>
+
+
+<div id="table-of-contents">
+    <h2><a href="#content">HD 5514 Research Methods (Fall 2019)</a></h2>
+    <div id="text-table-of-contents">
+      <ul>
+      <li><a href="#in-class-acitivity-analysis-of-variance-anova">In-Class Acitivity: Analysis of Variance (ANOVA)</a><ul>
+      <li><a href="#load-data">Load Data</a></li>
+      <li><a href="#check-data-set">Check Data Set</a></li>
+      <li><a href="#visualize-your-data---boxplot-histogram">Visualize your data - Boxplot &amp; Histogram</a></li>
+      <li><a href="#conduct-one-way-anova">Conduct one-way Anova</a></li>
+      <li><a href="#report-means">Report means</a></li>
+      <li><a href="#check-anova-assumptions">Check ANOVA assumptions</a></li>
+      <li><a href="#check-the-homogeneity-of-variance-assumption-levenes-test">Check the homogeneity of variance assumption: Levene’s test</a></li>
+      <li><a href="#anova-test-with-no-assumption-of-equal-variances-welch-one-way-test">ANOVA test with no assumption of equal variances: Welch one-way test</a></li>
+      <li><a href="#check-the-normality-assumption">Check the normality assumption</a></li>
+      <li><a href="#non-parametric-alternative-to-one-way-anova-test-kruskal-wallis-rank-sum-test">Non-parametric alternative to one-way ANOVA test: Kruskal-Wallis rank sum test</a></li>
+      </ul></li>
+      <li><a href="#in-class-acitivity-multiple-pairwise-comparison">In-Class Acitivity: Multiple pairwise-comparison</a><ul>
+      <li><a href="#bonferroni-and-holm-multiple-pairwise-comparisons">Bonferroni and Holm multiple pairwise-comparisons</a></li>
+      <li><a href="#tukey-multiple-pairwise-comparisons">Tukey multiple pairwise-comparisons</a></li>
+      </ul></li>
+      <li><a href="#in-class-acitivity-planned-constrasts">In-Class Acitivity: Planned Constrasts</a></li>
+      <li><a href="#fyi-visualize-your-data-using-ggpubr">FYI: Visualize your data using ggpubr</a><ul>
+      <li><a href="#bar-plots-with-mean---se-with-jittered-points">Bar plots with mean +/- se with jittered points</a></li>
+      </ul></li>
+      <li><a href="#in-class-acitivity-tidyverse">In-Class Acitivity: Tidyverse</a><ul>
+      <li><a href="#computes-summary-tables-using-dplyr">Computes summary tables using dplyr</a></li>
+      </ul></li>
+      <li><a href="#assignment-10-week-15">Assignment 10 (Week 15)</a><ul>
+      <li><a href="#read-data">Read Data</a></li>
+      <li><a href="#check-data">Check Data</a></li>
+      <li><a href="#use-the-help-function-to-learn-about-variables">Use the help function to learn about variables</a></li>
+      </ul></li>
+      </ul>
+    </div>
+</div>
+
+<div id="main">
+<div id="in-class-acitivity-analysis-of-variance-anova" class="section level1">
+<h1>In-Class Acitivity: Analysis of Variance (ANOVA)</h1>
+<div id="load-data" class="section level2">
+<h2>Load Data</h2>
+<p>We are going to use <code>R.appendix1.data</code> from Personality Project. We will load and print the data.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># 1. Loading</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">data1 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;http://personality-project.org/r/datasets/R.appendix1.text&quot;</span>, </a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="dt">header =</span> <span class="ot">TRUE</span>)  <span class="co">#read the data into a table</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">data1</a></code></pre></div>
+<pre><code>   Dosage Alertness
+1       a        30
+2       a        38
+3       a        35
+4       a        41
+5       a        27
+6       a        24
+7       b        32
+8       b        26
+9       b        31
+10      b        29
+11      b        27
+12      b        35
+13      b        21
+14      b        25
+15      c        17
+16      c        21
+17      c        20
+18      c        19</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># 2. Print</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">head</span>(data1)</a></code></pre></div>
+<pre><code>  Dosage Alertness
+1      a        30
+2      a        38
+3      a        35
+4      a        41
+5      a        27
+6      a        24</code></pre>
+</div>
+<div id="check-data-set" class="section level2">
+<h2>Check Data Set</h2>
+<p>Check the number of rows and columns.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Check the dimension of an object</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">dim</span>(data1)</a></code></pre></div>
+<pre><code>[1] 18  2</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># Display the internal structure of an R object.</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">str</span>(data1)</a></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   18 obs. of  2 variables:
+ $ Dosage   : Factor w/ 3 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;: 1 1 1 1 1 1 2 2 2 2 ...
+ $ Alertness: int  30 38 35 41 27 24 32 26 31 29 ...</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Check the levels</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">levels</span>(data1<span class="op">$</span>Dosage)</a></code></pre></div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+</div>
+<div id="visualize-your-data---boxplot-histogram" class="section level2">
+<h2>Visualize your data - Boxplot &amp; Histogram</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># par(mar=c(1,1,1,1)) # change figure margins if you encounter error</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co"># Boxplot</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw">boxplot</span>(data1<span class="op">$</span>Alertness)</a></code></pre></div>
+<p><img src="w15_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># Boxplot (Alterness by group)</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">boxplot</span>(data1<span class="op">$</span>Alertness <span class="op">~</span><span class="st"> </span>data1<span class="op">$</span>Dosage)</a></code></pre></div>
+<p><img src="w15_files/figure-html/unnamed-chunk-3-2.png" width="768" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Histogram</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">hist</span>(data1<span class="op">$</span>Alertness)</a></code></pre></div>
+<p><img src="w15_files/figure-html/unnamed-chunk-3-3.png" width="768" /></p>
+</div>
+<div id="conduct-one-way-anova" class="section level2">
+<h2>Conduct one-way Anova</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Compute the analysis of variance</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">aov.ex1 &lt;-<span class="st"> </span><span class="kw">aov</span>(Alertness <span class="op">~</span><span class="st"> </span>Dosage, <span class="dt">data =</span> data1)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co"># Summary of the analysis</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">summary</span>(aov.ex1)</a></code></pre></div>
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+Dosage       2  426.2  213.12   8.789 0.00298 **
+Residuals   15  363.8   24.25                   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="report-means" class="section level2">
+<h2>Report means</h2>
+<p><code>model.tables</code> computes summary tables for model fits, especially aov fits.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># Computes summary table (mean, count)</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">model.tables</span>(aov.ex1, <span class="st">&quot;means&quot;</span>)</a></code></pre></div>
+<pre><code>Tables of means
+Grand mean
+         
+27.66667 
+
+ Dosage 
+       a     b     c
+    32.5 28.25 19.25
+rep  6.0  8.00  4.00</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(model.tables)</a></code></pre></div>
+</div>
+<div id="check-anova-assumptions" class="section level2">
+<h2>Check ANOVA assumptions</h2>
+<p>ANOVA assumes normal distribution and homogeneity of variances.</p>
+</div>
+<div id="check-the-homogeneity-of-variance-assumption-levenes-test" class="section level2">
+<h2>Check the homogeneity of variance assumption: Levene’s test</h2>
+<p>Perform Leven’s test using the function <code>leveneTest</code> in <code>car</code> package. If variance across groups is not significantly different, we can assume the homogeneity of variances in the different groups.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">leveneTest</span>(Alertness <span class="op">~</span><span class="st"> </span>Dosage, <span class="dt">data =</span> data1)</a></code></pre></div>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value  Pr(&gt;F)  
+group  2  4.1667 0.03638 *
+      15                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="anova-test-with-no-assumption-of-equal-variances-welch-one-way-test" class="section level2">
+<h2>ANOVA test with no assumption of equal variances: Welch one-way test</h2>
+<p>Welch one-way test is an alternative that does not require thae homogeneity of variance assumption.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">oneway.test</span>(Alertness <span class="op">~</span><span class="st"> </span>Dosage, <span class="dt">data =</span> data1)</a></code></pre></div>
+<pre><code>
+    One-way analysis of means (not assuming equal variances)
+
+data:  Alertness and Dosage
+F = 19.339, num df = 2.0000, denom df = 9.2651, p-value =
+0.0004931</code></pre>
+</div>
+<div id="check-the-normality-assumption" class="section level2">
+<h2>Check the normality assumption</h2>
+<p>We can assume normality if all the points fall approximately along this reference line. Or you can conduct Shapiro-Wilk test on ANOVA residuals.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># create a normal QQ plot and add a reference line (Run the two lines at the</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="co"># same time)</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw">qqnorm</span>(cars<span class="op">$</span>dist)</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw">qqline</span>(cars<span class="op">$</span>dist)</a></code></pre></div>
+<p><img src="w15_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co"># Use plot function to get a QQ plot</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">plot</span>(aov.ex1, <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="w15_files/figure-html/unnamed-chunk-8-2.png" width="768" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># Run Shapiro-Wilk test</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">shapiro.test</span>(<span class="dt">x =</span> <span class="kw">residuals</span>(aov.ex1))</a></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  residuals(aov.ex1)
+W = 0.98604, p-value = 0.991</code></pre>
+</div>
+<div id="non-parametric-alternative-to-one-way-anova-test-kruskal-wallis-rank-sum-test" class="section level2">
+<h2>Non-parametric alternative to one-way ANOVA test: Kruskal-Wallis rank sum test</h2>
+<p>When ANOVA assumptions are not met, you cna use a non-parametric alternative.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">kruskal.test</span>(Alertness <span class="op">~</span><span class="st"> </span>Dosage, <span class="dt">data =</span> data1)</a></code></pre></div>
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  Alertness by Dosage
+Kruskal-Wallis chi-squared = 9.4272, df = 2, p-value = 0.008972</code></pre>
+</div>
+</div>
+<div id="in-class-acitivity-multiple-pairwise-comparison" class="section level1">
+<h1>In-Class Acitivity: Multiple pairwise-comparison</h1>
+<div id="bonferroni-and-holm-multiple-pairwise-comparisons" class="section level2">
+<h2>Bonferroni and Holm multiple pairwise-comparisons</h2>
+<p>In one-way Anova, a siginificant p-value means some of the group means are different. However, this does not tell us which pairs of groups are different. We can perform multiple pairwise-comparison to test the statistically significant mean difference between particular pairs of group. Given the significant ANOVA test, we can compute adjusted p-values using <code>pairwise.t.test</code>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># no adjustment</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">pairwise.t.test</span>(data1<span class="op">$</span>Alertness, data1<span class="op">$</span>Dosage, <span class="dt">data =</span> , <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
+<pre><code>
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  data1$Alertness and data1$Dosage 
+
+  a       b      
+b 0.13088 -      
+c 0.00082 0.00926
+
+P value adjustment method: none </code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># Bonferroni</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">pairwise.t.test</span>(data1<span class="op">$</span>Alertness, data1<span class="op">$</span>Dosage, <span class="dt">data =</span> , <span class="dt">p.adj =</span> <span class="st">&quot;bonf&quot;</span>)</a></code></pre></div>
+<pre><code>
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  data1$Alertness and data1$Dosage 
+
+  a      b     
+b 0.3926 -     
+c 0.0025 0.0278
+
+P value adjustment method: bonferroni </code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># Holm</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">pairwise.t.test</span>(data1<span class="op">$</span>Alertness, data1<span class="op">$</span>Dosage, <span class="dt">data =</span> , <span class="dt">p.adj =</span> <span class="st">&quot;holm&quot;</span>)</a></code></pre></div>
+<pre><code>
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  data1$Alertness and data1$Dosage 
+
+  a      b     
+b 0.1309 -     
+c 0.0025 0.0185
+
+P value adjustment method: holm </code></pre>
+</div>
+<div id="tukey-multiple-pairwise-comparisons" class="section level2">
+<h2>Tukey multiple pairwise-comparisons</h2>
+<p>Tukey HSD (Tukey Honest Significant Differences) using <code>TukeyHD</code>.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># diff: difference between means of the two groups lwr, upr: the lower and</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co"># the upper end point of the confidence interval at 95% (default) p adj:</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co"># p-value after adjustment for the multiple comparisons.</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="kw">TukeyHSD</span>(aov.ex1)</a></code></pre></div>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Alertness ~ Dosage, data = data1)
+
+$Dosage
+      diff       lwr       upr     p adj
+b-a  -4.25 -11.15796  2.657961 0.2768132
+c-a -13.25 -21.50659 -4.993408 0.0022342
+c-b  -9.00 -16.83289 -1.167109 0.0237003</code></pre>
+</div>
+</div>
+<div id="in-class-acitivity-planned-constrasts" class="section level1">
+<h1>In-Class Acitivity: Planned Constrasts</h1>
+<p>You can test some specific hypotheses than testing all possible mean comparisons. We can combine multiple means from different levels and compare two means (e.g., a and b vs. c)</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># assign values to the groups that you want to compare</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">c1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">-0.5</span>, <span class="dv">0</span>)  <span class="co"># H0_c1: a = b</span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">c2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">-1</span>)  <span class="co"># H0_c2: a &amp; b = c</span></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="co"># assign the contrasts</span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6">data1<span class="op">$</span>c1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="fl">0.5</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">8</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">data1<span class="op">$</span>c2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="fl">0.5</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="fl">0.5</span>, <span class="dv">8</span>), <span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb37-9" data-line-number="9"><span class="co"># compare differences between pairs of means (using regression)</span></a>
+<a class="sourceLine" id="cb37-10" data-line-number="10"><span class="kw">anova</span>(<span class="kw">lm</span>(Alertness <span class="op">~</span><span class="st"> </span>c1 <span class="op">+</span><span class="st"> </span>c2, <span class="dt">data =</span> data1))</a></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: Alertness
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+c1         1  42.98   42.98  1.7722 0.202990   
+c2         1 383.27  383.27 15.8051 0.001218 **
+Residuals 15 363.75   24.25                    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="fyi-visualize-your-data-using-ggpubr" class="section level1">
+<h1>FYI: Visualize your data using ggpubr</h1>
+<div id="bar-plots-with-mean---se-with-jittered-points" class="section level2">
+<h2>Bar plots with mean +/- se with jittered points</h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># Install R package ggpubr</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="co">## Recommended: Install the latest developmental version from GitHub (remove</span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="co">## # below) if(!require(devtools)) install.packages(&#39;devtools&#39;)</span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="co">## devtools::install_github(&#39;kassambara/ggpubr&#39;)</span></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="co">## If that failed, try one from CRAN (Remove # below)</span></a>
+<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="co">## install.packages(&#39;ggpubr&#39;) install.packages(&#39;ggplot2&#39;)</span></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="co"># Load ggpubr</span></a>
+<a class="sourceLine" id="cb39-11" data-line-number="11"><span class="kw">library</span>(ggpubr)</a>
+<a class="sourceLine" id="cb39-12" data-line-number="12"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb39-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb39-14" data-line-number="14"><span class="kw">ggbarplot</span>(data1, <span class="dt">x =</span> <span class="st">&quot;Dosage&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Alertness&quot;</span>, <span class="dt">add =</span> <span class="kw">c</span>(<span class="st">&quot;mean_se&quot;</span>, <span class="st">&quot;jitter&quot;</span>))</a></code></pre></div>
+<p><img src="w15_files/figure-html/unnamed-chunk-13-1.png" width="768" /></p>
+</div>
+</div>
+<div id="in-class-acitivity-tidyverse" class="section level1">
+<h1>In-Class Acitivity: Tidyverse</h1>
+<p><code>tidyverse</code> is an opinionated collection of R packages designed for data science. <a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a> This is designed to make it easy to install and load core packages from the tidyverse. <code>magrittr</code> offers a set of operators which make your code more readable such as the pipe operator <code>%&gt;%</code> <a href="https://magrittr.tidyverse.org/" class="uri">https://magrittr.tidyverse.org/</a> <code>dplyr</code> provides a set of tools for efficiently manipulating datasets: <a href="https://dplyr.tidyverse.org/" class="uri">https://dplyr.tidyverse.org/</a>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co"># The easiest way to get dplyr or magrittr is to install the whole</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="co"># tidyverse: install.packages(&#39;tidyverse&#39;)</span></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="co"># Alternatively, install just dplyr or magritter: install.packages(&#39;dplyr&#39;)</span></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="co"># install.packages(&#39;magrittr&#39;)</span></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb40-8" data-line-number="8"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div id="computes-summary-tables-using-dplyr" class="section level2">
+<h2>Computes summary tables using dplyr</h2>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">data1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Dosage) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>(), <span class="dt">mean =</span> <span class="kw">mean</span>(Alertness, </a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">sd =</span> <span class="kw">sd</span>(Alertness, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre><code># A tibble: 3 x 4
+  Dosage count  mean    sd
+  &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 a          6  32.5  6.60
+2 b          8  28.2  4.43
+3 c          4  19.2  1.71</code></pre>
+</div>
+</div>
+<div id="assignment-10-week-15" class="section level1">
+<h1>Assignment 10 (Week 15)</h1>
+<div id="read-data" class="section level2">
+<h2>Read Data</h2>
+<p>We will use build-in data set <code>Prestige</code> contained in the R package <code>car</code>. We will load and print the survey data.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># 1. Load the required package. install.packages(&#39;car&#39;) # if you don&#39;t have</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="co"># the &#39;car&#39; package, make sure to install it.</span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="co"># 2. Load the data</span></a>
+<a class="sourceLine" id="cb43-6" data-line-number="6"><span class="kw">data</span>(Prestige)</a>
+<a class="sourceLine" id="cb43-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb43-8" data-line-number="8"><span class="co"># 2. Print</span></a>
+<a class="sourceLine" id="cb43-9" data-line-number="9"><span class="kw">head</span>(Prestige)</a></code></pre></div>
+<pre><code>                    education income women prestige census type
+gov.administrators      13.11  12351 11.16     68.8   1113 prof
+general.managers        12.26  25879  4.02     69.1   1130 prof
+accountants             12.77   9271 15.70     63.4   1171 prof
+purchasing.officers     11.42   8865  9.11     56.8   1175 prof
+chemists                14.62   8403 11.68     73.5   2111 prof
+physicists              15.64  11030  5.13     77.6   2113 prof</code></pre>
+</div>
+<div id="check-data" class="section level2">
+<h2>Check Data</h2>
+<p>Check the number of rows and columns.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># Display the internal structure of an R object.</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">str</span>(Prestige)</a></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   102 obs. of  6 variables:
+ $ education: num  13.1 12.3 12.8 11.4 14.6 ...
+ $ income   : int  12351 25879 9271 8865 8403 11030 8258 14163 11377 11023 ...
+ $ women    : num  11.16 4.02 15.7 9.11 11.68 ...
+ $ prestige : num  68.8 69.1 63.4 56.8 73.5 77.6 72.6 78.1 73.1 68.8 ...
+ $ census   : int  1113 1130 1171 1175 2111 2113 2133 2141 2143 2153 ...
+ $ type     : Factor w/ 3 levels &quot;bc&quot;,&quot;prof&quot;,&quot;wc&quot;: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># Check the dimension of an object</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw">dim</span>(Prestige)</a></code></pre></div>
+<pre><code>[1] 102   6</code></pre>
+</div>
+<div id="use-the-help-function-to-learn-about-variables" class="section level2">
+<h2>Use the help function to learn about variables</h2>
+<p>If you want to learn more about the t.test function.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># A question mark is a shorcut for the &#39;help&#39; function.</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(Prestige)</a></code></pre></div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<div id="postamble" data-toggle="wy-nav-shift" class="status">
+<p class="author"><span class="glyphicon glyphicon-user"></span> Koeun Choi</p>
+<p class="date"><span class="glyphicon glyphicon-calendar"></span> December 4, 2019</p>
+</div>
+
+
+<script>
+$(document).ready(function () {
+ 	  });
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

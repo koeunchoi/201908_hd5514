@@ -147,7 +147,7 @@ hist(cars$dist, breaks = 20)
 hist(cars$dist, breaks = 20, col = "gray")
 ```
 
-## Chek the normality of the response variable using a density plot
+## Check the normality of the response variable using a density plot
 Create a density plot with the function `density()`.
 ```{r, eval=FALSE}
 # returns density data
@@ -161,7 +161,7 @@ d <- density(cars$dist)
 plot(d)
 ```
 
-## Chek the normality of the response variable using a QQ plot
+## Check the normality of the response variable using a QQ plot
 Create a density plot with the function `qqnorm()`. Quantile-Quantile plot (QQ-plot) shows the correlation between a given sample and the normal distribution. 
 ```{r, eval=FALSE}
 # create a normal QQ plot

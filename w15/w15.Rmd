@@ -1,0 +1,239 @@
+---
+title: "HD 5514 Research Methods (Fall 2019)"
+subtitle: "Analysis of Variance (W15)"
+author: "Koeun Choi"
+date: "December 4, 2019"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    self_contained: false
+    code_folding: hide
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+# In-Class Acitivity: Analysis of Variance (ANOVA)
+
+## Load Data
+We are going to use `R.appendix1.data` from Personality Project. We will load and print the data.
+```{r}
+# 1. Loading
+data1 <- read.table("http://personality-project.org/r/datasets/R.appendix1.text", header = TRUE)   #read the data into a table
+data1
+# 2. Print
+head(data1)
+```
+
+## Check Data Set
+Check the number of rows and columns. 
+```{r}
+# Check the dimension of an object
+dim(data1)
+
+# Display the internal structure of an R object.
+str(data1)
+
+# Check the levels
+levels(data1$Dosage)
+```
+
+## Visualize your data - Boxplot & Histogram
+```{r}
+#par(mar=c(1,1,1,1)) # change figure margins if you encounter error
+
+# Boxplot
+boxplot(data1$Alertness)    
+
+# Boxplot (Alterness by group)
+boxplot(data1$Alertness ~ data1$Dosage)
+
+# Histogram
+hist(data1$Alertness)    
+```
+
+## Conduct one-way Anova
+```{r}
+# Compute the analysis of variance
+aov.ex1 <- aov(Alertness ~ Dosage, data = data1)
+# Summary of the analysis
+summary(aov.ex1)
+```
+
+## Report means
+`model.tables` computes summary tables for model fits, especially  aov fits.
+```{r}
+# Computes summary table (mean, count)
+model.tables(aov.ex1,"means")
+
+?model.tables
+```
+
+## Check ANOVA assumptions
+ANOVA assumes normal distribution and homogeneity of variances.
+
+## Check the homogeneity of variance assumption: Levene’s test
+Perform Leven's test using the function `leveneTest` in `car` package. If variance across groups is not significantly different, we can assume the homogeneity of variances in the different groups.
+```{r}
+library(car)
+leveneTest(Alertness ~ Dosage, data = data1)
+```
+
+## ANOVA test with no assumption of equal variances: Welch one-way test
+Welch one-way test is an alternative that does not require thae homogeneity of variance assumption.
+```{r}
+oneway.test(Alertness ~ Dosage, data = data1)
+```
+
+## Check the normality assumption
+We can assume normality if all the points fall approximately along this reference line. Or you can conduct Shapiro-Wilk test on ANOVA residuals. 
+```{r}
+# create a normal QQ plot and add a reference line (Run the two lines at the same time)
+qqnorm(cars$dist)
+qqline(cars$dist) 
+
+# Use plot function to get a QQ plot
+plot(aov.ex1, 2)
+
+# Run Shapiro-Wilk test
+shapiro.test(x = residuals(aov.ex1))
+```
+
+## Non-parametric alternative to one-way ANOVA test: Kruskal-Wallis rank sum test
+When ANOVA assumptions are not met, you cna use a non-parametric alternative.
+```{r}
+kruskal.test(Alertness ~ Dosage, data = data1)
+```
+
+# In-Class Acitivity: Multiple pairwise-comparison
+
+## Bonferroni and Holm multiple pairwise-comparisons
+In one-way Anova, a siginificant p-value means some of the group means are different. However, this does not tell us which pairs of groups are different. We can perform multiple pairwise-comparison to test the statistically significant mean difference between particular pairs of group. Given the significant ANOVA test, we can compute adjusted p-values using `pairwise.t.test`.
+```{r}
+# no adjustment
+pairwise.t.test(data1$Alertness, data1$Dosage, data = , p.adj = "none")
+
+# Bonferroni
+pairwise.t.test(data1$Alertness, data1$Dosage, data = , p.adj = "bonf")
+
+# Holm
+pairwise.t.test(data1$Alertness, data1$Dosage, data = , p.adj = "holm")
+```
+
+## Tukey multiple pairwise-comparisons
+Tukey HSD (Tukey Honest Significant Differences) using `TukeyHD`.
+```{r}
+# diff: difference between means of the two groups
+#lwr, upr: the lower and the upper end point of the confidence interval at 95% (default)
+# p adj: p-value after adjustment for the multiple comparisons.
+
+TukeyHSD(aov.ex1)
+```
+
+# In-Class Acitivity: Planned Constrasts
+You can test some specific hypotheses than testing all possible mean comparisons. We can combine multiple means from different levels and compare two means (e.g., a and b vs. c) 
+```{r}
+# assign values to the groups that you want to compare
+c1 <- c(.5, -.5, 0) # H0_c1: a = b
+c2 <- c(.5, .5, -1) # H0_c2: a & b = c
+
+# assign the contrasts 
+data1$c1 <- c(rep(.5,6), rep(-.5,8), rep(0,4))
+data1$c2 <- c(rep(.5,6), rep(.5,8), rep(-1,4))
+
+# compare differences between pairs of means (using regression)
+anova(lm(Alertness ~ c1 + c2, data = data1))
+```
+
+# FYI: Visualize your data using ggpubr
+
+## Bar plots with mean +/- se with jittered points
+```{r}
+# Install R package ggpubr
+
+## Recommended: Install the latest developmental version from GitHub (remove # below)
+#if(!require(devtools)) install.packages("devtools")
+#devtools::install_github("kassambara/ggpubr")
+
+## If that failed, try one from CRAN (Remove # below)
+#install.packages("ggpubr")
+#install.packages("ggplot2")
+
+# Load ggpubr
+library(ggpubr)
+library(ggplot2)
+
+ggbarplot(data1, x = "Dosage", y = "Alertness", add = c("mean_se", "jitter"))
+```
+
+# In-Class Acitivity: Tidyverse
+`tidyverse`  is an opinionated collection of R packages designed for data science. https://www.tidyverse.org/ This is designed to make it easy to install and load core packages from the tidyverse.
+`magrittr` offers a set of operators which make your code more readable such as the pipe operator `%>%` https://magrittr.tidyverse.org/
+`dplyr` provides a set of tools for efficiently manipulating datasets: https://dplyr.tidyverse.org/.
+```{r}
+# The easiest way to get dplyr or magrittr is to install the whole tidyverse:
+#install.packages("tidyverse")
+
+# Alternatively, install just dplyr or magritter:
+#install.packages("dplyr")
+#install.packages("magrittr")
+
+library(magrittr)
+library(dplyr)
+library(tidyverse)
+```
+
+## Computes summary tables using dplyr
+```{r}
+data1 %>% group_by(Dosage) %>%
+  summarise(
+    count = n(),
+    mean = mean(Alertness, na.rm = TRUE),
+    sd = sd(Alertness, na.rm = TRUE)
+  )
+```
+
+# Assignment 10 (Week 15)
+
+## Read Data
+We will use  build-in data set `Prestige` contained in the R package `car`. We will load and print the survey data.
+```{r}
+# 1. Load the required package.
+#install.packages("car") # if you don't have the "car" package, make sure to install it. 
+library(car)
+
+# 2. Load the data
+data(Prestige) 
+
+# 2. Print
+head(Prestige)
+```
+
+## Check Data
+Check the number of rows and columns. 
+```{r}
+# Display the internal structure of an R object.
+str(Prestige)
+
+# Check the dimension of an object
+dim(Prestige)
+```
+
+## Use the help function to learn about variables
+If you want to learn more about the t.test function.
+```{r}
+# A question mark is a shorcut for the "help" function.
+?Prestige
+```
